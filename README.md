@@ -1,7 +1,7 @@
-# ESP8266 Relay Firmware
+# ESP8266 Relay Scheduler
 
 This is a simple web-based relay controller firmware for ESP8266 (tested on ESP-01 1M).  
-It lets you control a relay over WiFi, set up schedules, and manage settings via a nice web interface.
+It lets you control a relay over WiFi, set up schedules, and manage settings via a nice web interface (Ukrainian language).
 
 ## Features
 
@@ -60,3 +60,4 @@ It lets you control a relay over WiFi, set up schedules, and manage settings via
 - `lib/` – Project libraries (schedule, settings)
 - `data/` – Web UI files (HTML, JS, CSS, images)
 - `platformio.ini` – PlatformIO config
+
