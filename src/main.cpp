@@ -28,6 +28,13 @@
 #include <ESP8266Ping.h>
 #include <ESPAsyncWebServer.h>
 
+#define RELAY_PIN 0  // GPIO0 (D3 на Wemos D1 Mini)
+
+void ledOn() { digitalWrite(LED_BUILTIN, LOW); }
+void ledOff() { digitalWrite(LED_BUILTIN, HIGH); }
+void relayOn() { digitalWrite(RELAY_PIN, LOW); }  // активний низький, для більшості реле
+void relayOff() { digitalWrite(RELAY_PIN, HIGH); }
+
 #include "schedule.hpp"
 #include "settings.hpp"
 
@@ -75,6 +82,12 @@ public:
 void setup()
 {
     Serial.begin(9600);
+
+    pinMode(LED_BUILTIN, OUTPUT);
+    digitalWrite(LED_BUILTIN, HIGH);
+
+    pinMode(RELAY_PIN, OUTPUT);
+    digitalWrite(RELAY_PIN, LOW);
 
     if (!LittleFS.begin())
     {
@@ -181,6 +194,8 @@ void setup()
     {
         relay_is_on = true;
         TURN_ON();
+        ledOn();
+		relayOn();
         LOGI("Relay turend on");
         request->send(200, "application/json", "{\"state\":\"ON\"}");
     });
@@ -189,6 +204,8 @@ void setup()
     {
         relay_is_on = false;
         TURN_OFF();
+        ledOff();
+		relayOff();
         LOGI("Relay turend off");
         request->send(200, "application/json", "{\"state\":\"OFF\"}");
     });
@@ -443,12 +460,16 @@ int execute_action(const bool action_select, char *action, char *date, char *tim
     {
         relay_is_on = true;
         TURN_ON();
+        ledOn();
+		relayOn();
         LOGI("Relay turned on");
     }
     else if (!strcmp(action, "turnoff"))
     {
         relay_is_on = false;
         TURN_OFF();
+        ledOff();
+		relayOff();
         LOGI("Relay turned off");
     }
 
