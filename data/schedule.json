@@ -1,0 +1,17 @@
+{
+    "use_schedule":false,
+    "action1":"noaction",
+    "action2":"noaction",
+    "date1":"",
+    "date2":"",
+    "time1":"",
+    "time2":"",
+    "repeat":"once",
+    "monday":false,
+    "tuesday":false,
+    "wednesday":false,
+    "thursday":false,
+    "friday":false,
+    "saturday":false,
+    "sunday":false
+}
